@@ -36,50 +36,46 @@ public class HelloApplication extends Application {
 
         stage.show();
     }
+
     // master method aka. draws face
     public static void drawPrimitiveFace() {
-        drawHeadShape();
+        drawCircularHeadShape();
         drawNormalMouth();
         drawNormalEyes();
     }
-
-    public static void drawHeadShape() {
-        // scanner object lavet
-        Scanner scanner = new Scanner(System.in);
-        // spørger bruger
-        // System.out.println("Hvilken størrelse vil du gerne have hovedet? skriv i pixels");
-        // bruger input bliver brugt
-        // int hovedDiameter = scanner.nextInt();
-        // indsætter pixels i diameter
+    // draw 3 different head shapes
+    public static void drawCircularHeadShape() {
         // hoved er normalt 300 pixels
         gc.strokeOval(150, 150, 300, 300);
     }
-    // old user interface for mouth
-    public static void drawMouth() {
-        // scanner object lavet
-        Scanner scanner = new Scanner(System.in);
-        // spørger bruger
-        //System.out.println("Hvilken størrelse vil du gerne have din mund? skriv i pixels");
-        // bruger input bliver brugt
-        // int mundDiameter = scanner.nextInt();
+
+    public static void drawTriangularHeadShape() {
+        // hoved er normalt 300 pixels
+        gc.strokeOval(150, 150, 300, 300);
     }
 
+    public static void drawSquareHeadShape() {
+        // hoved er normalt 300 pixels
+        gc.strokeOval(150, 150, 300, 300);
+    }
+
+    // draws 3 different types of mouth
     public static void drawNormalMouth() {
         gc.setFill(Color.BLACK);
         gc.fillOval(275,370,50,50);
     }
-    // old user interface for eyes
-    public static void drawEyes() {
-        // scanner object lavet
-        Scanner scanner = new Scanner(System.in);
-        // spørger bruger
-        // System.out.println("Hvilken størrelse vil du gerne have dine øjne? skriv i pixels");
-        // bruger input bliver brugt
-        // int øjneDiameter = scanner.nextInt();
-        // indsætter pixels i diameter
-        // øjne er normalt 20 pixels
+
+    public static void drawMouth1() {
+        gc.setFill(Color.BLACK);
+        gc.fillOval(275,370,50,50);
     }
-    // draws 3 types of eyes
+
+    public static void drawMouth2() {
+        gc.setFill(Color.BLACK);
+        gc.fillOval(275,370,50,50);
+    }
+
+    // draws 3 different types of eyes
     public static void drawNormalEyes() {
         gc.setFill(Color.BLACK);
         gc.fillOval(220,220,20,20);
