@@ -36,54 +36,67 @@ public class HelloApplication extends Application {
 
         stage.show();
     }
-
+    // master method aka. draws face
     public static void drawPrimitiveFace() {
         drawHeadShape();
-        drawMouth();
-        drawEyes();
+        drawNormalMouth();
+        drawNormalEyes();
     }
 
     public static void drawHeadShape() {
         // scanner object lavet
         Scanner scanner = new Scanner(System.in);
         // spørger bruger
-        System.out.println("Hvilken størrelse vil du gerne have hovedet? skriv i pixels");
+        // System.out.println("Hvilken størrelse vil du gerne have hovedet? skriv i pixels");
         // bruger input bliver brugt
-        int hovedDiameter = scanner.nextInt();
+        // int hovedDiameter = scanner.nextInt();
         // indsætter pixels i diameter
         // hoved er normalt 300 pixels
-        gc.strokeOval(150, 150, hovedDiameter, hovedDiameter);
+        gc.strokeOval(150, 150, 300, 300);
     }
-
+    // old user interface for mouth
     public static void drawMouth() {
         // scanner object lavet
         Scanner scanner = new Scanner(System.in);
         // spørger bruger
-        System.out.println("Hvilken størrelse vil du gerne have din mund? skriv i pixels");
+        //System.out.println("Hvilken størrelse vil du gerne have din mund? skriv i pixels");
         // bruger input bliver brugt
-        int mundDiameter = scanner.nextInt();
-        // indsætter pixels i diameter
-        // mund er normalt 50 pixels
-        gc.setFill(Color.BLACK);
-        gc.fillOval(275,370,mundDiameter,mundDiameter);
+        // int mundDiameter = scanner.nextInt();
     }
 
+    public static void drawNormalMouth() {
+        gc.setFill(Color.BLACK);
+        gc.fillOval(275,370,50,50);
+    }
+    // old user interface for eyes
     public static void drawEyes() {
         // scanner object lavet
         Scanner scanner = new Scanner(System.in);
         // spørger bruger
-        System.out.println("Hvilken størrelse vil du gerne have dine øjne? skriv i pixels");
+        // System.out.println("Hvilken størrelse vil du gerne have dine øjne? skriv i pixels");
         // bruger input bliver brugt
-        int øjneDiameter = scanner.nextInt();
+        // int øjneDiameter = scanner.nextInt();
         // indsætter pixels i diameter
         // øjne er normalt 20 pixels
+    }
+    // draws 3 types of eyes
+    public static void drawNormalEyes() {
         gc.setFill(Color.BLACK);
-        gc.fillOval(220,220,øjneDiameter,øjneDiameter);
-        gc.fillOval(360,220,øjneDiameter,øjneDiameter);
+        gc.fillOval(220,220,20,20);
+        gc.fillOval(360,220,20,20);
+    }
+
+    public static void drawEyes1() {
+        gc.fillRoundRect(220,220,20,50,20, 20);
+        gc.fillRoundRect(360,220,20,70,20,20);
+    }
+
+    public static void drawEyes2() {
+        gc.fillRoundRect(220,220,5,50,20, 20);
+        gc.fillRoundRect(360,220,5,70,20,20);
     }
 
     public static void main(String[] args) {
-        System.out.println("Hvordan vil du gerne have dit vilkårlige ansigt i dag?");
         launch();
     }
 }
