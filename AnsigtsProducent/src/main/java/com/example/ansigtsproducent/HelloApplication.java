@@ -39,14 +39,17 @@ public class HelloApplication extends Application {
 
     // master method aka. draws face
     public static void drawPrimitiveFace() {
-        drawCircularHeadShape();
+        drawHeadShape();
         drawNormalMouth();
         drawNormalEyes();
     }
     // draw 3 different head shapes
-    public static void drawCircularHeadShape() {
+    public static void drawHeadShape() {
         // hoved er normalt 300 pixels
-        gc.strokeOval(150, 150, 300, 300);
+        //gc.strokeOval(150, 150, 300, 300);
+        // square headShape
+        // gc.strokeRect(150,150,300,300);
+        gc.strokePolygon(new double[] {150,300,450,300,200}, new double[] {150,200,150,450,400}, 5);
     }
 
     public static void drawTriangularHeadShape() {
@@ -62,7 +65,7 @@ public class HelloApplication extends Application {
     // draws 3 different types of mouth
     public static void drawNormalMouth() {
         gc.setFill(Color.BLACK);
-        gc.fillOval(275,370,50,50);
+        gc.fillOval(250,370,50,50);
     }
 
     public static void drawMouth1() {
@@ -78,7 +81,9 @@ public class HelloApplication extends Application {
     // draws 3 different types of eyes
     public static void drawNormalEyes() {
         gc.setFill(Color.BLACK);
+        gc.strokeOval(210,210,45,45);
         gc.fillOval(220,220,20,20);
+        gc.strokeOval(350,210,45,45);
         gc.fillOval(360,220,20,20);
     }
 
