@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -64,9 +65,13 @@ public class HelloApplication extends Application {
 
     // draws 3 different types of mouth
     public static void drawNormalMouth() {
+        /*
         gc.setFill(Color.BLACK);
         gc.fillOval(250,370,50,50);
+        */
+        gc.strokeArc(250,370,50,50,180,180, ArcType.OPEN);
     }
+
 
     public static void drawMouth1() {
         gc.setFill(Color.BLACK);
