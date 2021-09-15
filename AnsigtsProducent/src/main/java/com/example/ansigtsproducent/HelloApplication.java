@@ -43,7 +43,7 @@ public class HelloApplication extends Application {
     public static void drawPrimitiveFace() {
         drawHeadShape();
         drawNormalMouth();
-        drawNormalEyes();
+        drawEyes();
     }
     // draw 3 different head shapes
     public static void drawHeadShape() {
@@ -66,11 +66,24 @@ public class HelloApplication extends Application {
 
     // draws 3 different types of mouth
     public static void drawNormalMouth() {
-        /*
-        gc.setFill(Color.BLACK);
-        gc.fillOval(250,370,50,50);
-        */
-        gc.strokeArc(250,370,50,50,180,180, ArcType.OPEN);
+        int mood = Randomizer(1,6);
+        System.out.println("mood is: "+mood);
+        if (mood == 1) {
+            // happy
+            gc.strokeArc(250,370,50,50,180,180, ArcType.OPEN);
+        } else if (mood == 2) {
+            // sad
+            gc.strokeArc(250,370,50,50,0,180, ArcType.OPEN);
+        } else if (mood == 3) {
+            // normal
+            gc.strokeLine(250,370,280,370);
+        } else if (mood == 4) {
+            // very happy
+            gc.strokeArc(250,370,50,50,180,180, ArcType.CHORD);
+        } else if (mood == 5) {
+            // very sad
+            gc.strokeArc(250,370,50,50,0,180, ArcType.CHORD);
+        }
     }
 
     // giver et vilkårligt tal tilbage mellem to tal
@@ -81,7 +94,7 @@ public class HelloApplication extends Application {
     }
 
     // draws 3 different types of eyes
-    public static void drawNormalEyes() {
+    public static void drawEyes() {
         // outer eyes
         int outerEyesRandom = Randomizer(40,80);
         // outer eyes
@@ -119,7 +132,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println(Randomizer(1,10));
         launch();
     }
 }
