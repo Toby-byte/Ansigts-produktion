@@ -11,6 +11,7 @@ import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class HelloApplication extends Application {
@@ -50,7 +51,7 @@ public class HelloApplication extends Application {
         //gc.strokeOval(150, 150, 300, 300);
         // square headShape
         // gc.strokeRect(150,150,300,300);
-        gc.strokePolygon(new double[] {150,300,450,300,200}, new double[] {150,200,150,450,400}, 5);
+        gc.strokePolygon(new double[] {150,300,450,400,300,200}, new double[] {150,200,150,400,450,400}, 6);
     }
 
     public static void drawTriangularHeadShape() {
@@ -72,37 +73,53 @@ public class HelloApplication extends Application {
         gc.strokeArc(250,370,50,50,180,180, ArcType.OPEN);
     }
 
-
-    public static void drawMouth1() {
-        gc.setFill(Color.BLACK);
-        gc.fillOval(275,370,50,50);
-    }
-
-    public static void drawMouth2() {
-        gc.setFill(Color.BLACK);
-        gc.fillOval(275,370,50,50);
+    // giver et vilkårligt tal tilbage mellem to tal
+    public static int Randomizer(int minNumber, int maxNumber) {
+        Random random = new Random();
+        int randomizer = random.nextInt(maxNumber-minNumber)+minNumber;
+        return randomizer;
     }
 
     // draws 3 different types of eyes
     public static void drawNormalEyes() {
-        gc.setFill(Color.BLACK);
-        gc.strokeOval(210,210,45,45);
-        gc.fillOval(220,220,20,20);
-        gc.strokeOval(350,210,45,45);
-        gc.fillOval(360,220,20,20);
+        // outer eyes
+        int outerEyesRandom = Randomizer(40,80);
+        // outer eyes
+        // inner eyes
+        int innerEyesRandom = Randomizer(10,20);
+        // inner eyes
+        // eye color
+        int innerEyesRandomColor = Randomizer(1,6);
+        // eye color
+        System.out.println("Outer eyes is: "+outerEyesRandom);
+        System.out.println("Inner eyes is: "+innerEyesRandom);
+        System.out.println("Inner eyes color is: "+innerEyesRandomColor);
+
+        eyeColor(innerEyesRandomColor);
+        gc.strokeOval(210,210,outerEyesRandom,outerEyesRandom);
+        gc.fillOval(220,220,innerEyesRandom,innerEyesRandom);
+        gc.strokeOval(350,210,outerEyesRandom,outerEyesRandom);
+        gc.fillOval(360,220,innerEyesRandom,innerEyesRandom);
     }
 
-    public static void drawEyes1() {
-        gc.fillRoundRect(220,220,20,50,20, 20);
-        gc.fillRoundRect(360,220,20,70,20,20);
-    }
-
-    public static void drawEyes2() {
-        gc.fillRoundRect(220,220,5,50,20, 20);
-        gc.fillRoundRect(360,220,5,70,20,20);
+    public static void eyeColor(int eyeColor) {
+       if (eyeColor == 1) {
+           gc.setFill(Color.BLACK);
+       } else if (eyeColor == 2) {
+           gc.setFill(Color.BLUE);
+       } else if (eyeColor == 3) {
+           gc.setFill(Color.YELLOW);
+       } else if (eyeColor == 4) {
+           gc.setFill(Color.GREEN);
+       } else if (eyeColor == 5) {
+           gc.setFill(Color.PURPLE);
+       } else if (eyeColor == 6) {
+           gc.setFill(Color.PINK);
+       }
     }
 
     public static void main(String[] args) {
+        System.out.println(Randomizer(1,10));
         launch();
     }
 }
