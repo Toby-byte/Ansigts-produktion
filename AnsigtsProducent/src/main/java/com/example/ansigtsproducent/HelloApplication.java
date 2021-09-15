@@ -43,6 +43,7 @@ public class HelloApplication extends Application {
     public static void drawPrimitiveFace() {
         drawHeadShape();
         drawNormalMouth();
+        drawBeard();
         drawEyes();
     }
     // draw 3 different head shapes
@@ -54,9 +55,14 @@ public class HelloApplication extends Application {
         gc.strokePolygon(new double[] {150,300,450,400,300,200}, new double[] {150,200,150,400,450,400}, 6);
     }
 
-    public static void drawTriangularHeadShape() {
-        // hoved er normalt 300 pixels
-        gc.strokeOval(150, 150, 300, 300);
+    public static void drawBeard() {
+        // start 200,400
+        // slut 400, 400
+        for (int x_value=200; x_value<=400; x_value=x_value+3) {
+            int y_value = Randomizer(400,500);
+            gc.strokeLine(x_value,400,x_value,y_value);
+
+        }
     }
 
     public static void drawSquareHeadShape() {
