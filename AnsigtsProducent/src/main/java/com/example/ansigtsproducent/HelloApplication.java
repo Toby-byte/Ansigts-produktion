@@ -38,9 +38,8 @@ public class HelloApplication extends Application {
         root.getChildren().add(canvas);
         //ikke relevant Hertil
         drawPrimitiveFace();
-
+        // code that generate 360 faces continuously
         stage.show();
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             gc.clearRect(0, 0, width, height);
             drawPrimitiveFace();
@@ -49,7 +48,7 @@ public class HelloApplication extends Application {
         timeline.play();
     }
 
-    // master method aka. draws face
+    // master method aka. draws the face
     public static void drawPrimitiveFace() {
         drawHeadShape();
         drawNormalMouth();
@@ -58,10 +57,7 @@ public class HelloApplication extends Application {
     }
     // draw 3 different head shapes
     public static void drawHeadShape() {
-        // hoved er normalt 300 pixels
-        //gc.strokeOval(150, 150, 300, 300);
-        // square headShape
-        // gc.strokeRect(150,150,300,300);
+        // Face polygon code
         //corner 1
         int corner1PolygonX = Randomizer(50,150);
         int corner1PolygonY = Randomizer(100,150);
@@ -77,6 +73,7 @@ public class HelloApplication extends Application {
     }
 
     public static void polygonColor(int faceColor) {
+        // colors the face can have
         if (faceColor == 1) {
             gc.setFill(Color.YELLOW);
         } else if (faceColor == 2) {
@@ -87,21 +84,15 @@ public class HelloApplication extends Application {
     }
 
     public static void drawBeard() {
-        // start 200,400
-        // slut 400, 400
+        // start of beard: 200,400
+        // end of beard: 400, 400
         for (int x_value=200; x_value<=400; x_value=x_value+3) {
             int y_value = Randomizer(400,500);
             gc.strokeLine(x_value,400,x_value,y_value);
-
         }
     }
 
-    public static void drawSquareHeadShape() {
-        // hoved er normalt 300 pixels
-        gc.strokeOval(150, 150, 300, 300);
-    }
-
-    // draws 3 different types of mouth
+    // draws 5 different types of mouth
     public static void drawNormalMouth() {
         int mood = Randomizer(1,6);
         gc.setFill(Color.BLACK);
@@ -123,14 +114,14 @@ public class HelloApplication extends Application {
         }
     }
 
-    // giver et vilkårligt tal tilbage mellem to tal
+    // gives a random number back, between a minimum number and a maximum number
     public static int Randomizer(int minNumber, int maxNumber) {
         Random random = new Random();
         int randomizer = random.nextInt(maxNumber-minNumber)+minNumber;
         return randomizer;
     }
 
-    // draws 3 different types of eyes
+    // Randomizes outer, inner eyes and eye color, draws them as well
     public static void drawEyes() {
         // outer eyes
         int outerEyesRandom = Randomizer(40,80);
@@ -148,6 +139,7 @@ public class HelloApplication extends Application {
         gc.fillOval(360,220,innerEyesRandom,innerEyesRandom);
     }
 
+    // method for randomizing eye colors
     public static void eyeColor(int eyeColor) {
        if (eyeColor == 1) {
            gc.setFill(Color.BLACK);
@@ -163,7 +155,7 @@ public class HelloApplication extends Application {
            gc.setFill(Color.PINK);
        }
     }
-
+    // starts the code
     public static void main(String[] args) {
         launch();
     }
