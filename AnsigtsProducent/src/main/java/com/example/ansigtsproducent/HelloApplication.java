@@ -1,5 +1,7 @@
 package com.example.ansigtsproducent;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -9,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Random;
@@ -37,6 +40,13 @@ public class HelloApplication extends Application {
         drawPrimitiveFace();
 
         stage.show();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            gc.clearRect(0, 0, width, height);
+            drawPrimitiveFace();
+        }));
+        timeline.setCycleCount(360);
+        timeline.play();
     }
 
     // master method aka. draws face
@@ -52,7 +62,28 @@ public class HelloApplication extends Application {
         //gc.strokeOval(150, 150, 300, 300);
         // square headShape
         // gc.strokeRect(150,150,300,300);
-        gc.strokePolygon(new double[] {150,300,450,400,300,200}, new double[] {150,200,150,400,450,400}, 6);
+        //corner 1
+        int corner1PolygonX = Randomizer(50,150);
+        int corner1PolygonY = Randomizer(100,150);
+        // corner 2
+        int corner2PolygonY = Randomizer(50,200);
+        // corner 3
+        int corner3PolygonX = Randomizer(450,600);
+        int corner3PolygonY = Randomizer(100,150);
+        // corner 5
+        int corner5PolygonY = Randomizer(450,550);
+        polygonColor(Randomizer(1,4));
+        gc.fillPolygon(new double[] {corner1PolygonX,300,corner3PolygonX,400,300,200}, new double[] {corner1PolygonY,corner2PolygonY,corner3PolygonY,400,corner5PolygonY,400}, 6);
+    }
+
+    public static void polygonColor(int faceColor) {
+        if (faceColor == 1) {
+            gc.setFill(Color.YELLOW);
+        } else if (faceColor == 2) {
+            gc.setFill(Color.OLIVE);
+        } else if (faceColor == 3) {
+            gc.setFill(Color.DEEPSKYBLUE);
+        }
     }
 
     public static void drawBeard() {
@@ -73,10 +104,10 @@ public class HelloApplication extends Application {
     // draws 3 different types of mouth
     public static void drawNormalMouth() {
         int mood = Randomizer(1,6);
-        System.out.println("mood is: "+mood);
+        gc.setFill(Color.BLACK);
         if (mood == 1) {
             // happy
-            gc.strokeArc(250,370,50,50,180,180, ArcType.OPEN);
+            gc.strokeArc(250,340,50,50,180,180, ArcType.OPEN);
         } else if (mood == 2) {
             // sad
             gc.strokeArc(250,370,50,50,0,180, ArcType.OPEN);
@@ -85,10 +116,10 @@ public class HelloApplication extends Application {
             gc.strokeLine(250,370,280,370);
         } else if (mood == 4) {
             // very happy
-            gc.strokeArc(250,370,50,50,180,180, ArcType.CHORD);
+            gc.fillArc(250,340,50,50,180,180, ArcType.CHORD);
         } else if (mood == 5) {
             // very sad
-            gc.strokeArc(250,370,50,50,0,180, ArcType.CHORD);
+            gc.fillArc(250,370,50,50,0,180, ArcType.CHORD);
         }
     }
 
@@ -110,10 +141,6 @@ public class HelloApplication extends Application {
         // eye color
         int innerEyesRandomColor = Randomizer(1,6);
         // eye color
-        System.out.println("Outer eyes is: "+outerEyesRandom);
-        System.out.println("Inner eyes is: "+innerEyesRandom);
-        System.out.println("Inner eyes color is: "+innerEyesRandomColor);
-
         eyeColor(innerEyesRandomColor);
         gc.strokeOval(210,210,outerEyesRandom,outerEyesRandom);
         gc.fillOval(220,220,innerEyesRandom,innerEyesRandom);
@@ -127,11 +154,11 @@ public class HelloApplication extends Application {
        } else if (eyeColor == 2) {
            gc.setFill(Color.BLUE);
        } else if (eyeColor == 3) {
-           gc.setFill(Color.YELLOW);
+           gc.setFill(Color.MOCCASIN);
        } else if (eyeColor == 4) {
            gc.setFill(Color.GREEN);
        } else if (eyeColor == 5) {
-           gc.setFill(Color.PURPLE);
+           gc.setFill(Color.BROWN);
        } else if (eyeColor == 6) {
            gc.setFill(Color.PINK);
        }
